@@ -4,7 +4,6 @@
 #define VIEW_RADIUS_PLACEMENT_PROPORTION 0.8
 
 #define VIEW_SCALING_FACTOR 0.3
-#define PI 3.14159265358979
 
 @interface JDCarouselControl ()
 
@@ -230,13 +229,13 @@ typedef struct margins {
     float theta;
     
     if (x >= 0 && y < 0) // Q1
-        theta = 2*PI + thetaR;
+        theta = 2*M_PI + thetaR;
     else if (x >= 0 && y >= 0) // Q4
         theta = thetaR;
     else if (x < 0 && y < 0) // Q2
-        theta = PI + thetaR;
+        theta = M_PI + thetaR;
     else if (x < 0 && y >= 0) // Q3
-        theta = PI + thetaR;
+        theta = M_PI + thetaR;
     else return -1;
     
     if (R > self.radius || R < self.innerRadius)
@@ -263,7 +262,7 @@ typedef struct margins {
     self.innerMargins = innerMargins;
     
     // Now we'll deal with getting the angles of the segments
-    self.arcLength = (self.numberOfSegments ? (2*PI / self.numberOfSegments) : 2*PI);
+    self.arcLength = (self.numberOfSegments ? (2*M_PI / self.numberOfSegments) : 2*M_PI);
 }
 
 -(void)_layoutSegments {
