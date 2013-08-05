@@ -1,6 +1,5 @@
 #import "JDCarouselControl.h"
 
-// NOTE: Changing this will create some issues with the positioning of the segment views. If you really feel like changing the radius, play around with VIEW_RADIUS_PLACEMENT_PROPORTION and see what happens. I haven't found a relationship between the two yet that always centers the view within each segment. Also worth noting that both of these 'proportions' are scaling factors w.r.t the radius
 #define INNER_PROPORTION 0.6
 #define VIEW_RADIUS_PLACEMENT_PROPORTION 0.8
 
@@ -138,7 +137,9 @@ typedef struct margins {
 }
 
 -(void)setInnerRadius:(CGFloat)innerRadius {
-    // Since this is a private method we won't bother checking to see if it's valid. I'll trust this implementation.
+    if (self.innerRadius >= self.radius)
+        return;
+    
     _innerRadius = innerRadius;
     self.innerDiameter = innerRadius*2;
 }
@@ -170,10 +171,10 @@ typedef struct margins {
 }
 
 -(void)removeSegmentAtIndex:(NSUInteger)index {
-    if (index >= [_items count]) return;
+    if (index >= [self.items count]) return;
     
-    [[_items objectAtIndex:index] removeFromSuperview];
-    [_items removeObjectAtIndex:index];
+    [[self.items objectAtIndex:index] removeFromSuperview];
+    [self.items removeObjectAtIndex:index];
     
     [self setNeedsLayout];
 }
