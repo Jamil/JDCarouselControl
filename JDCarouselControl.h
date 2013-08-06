@@ -1,11 +1,3 @@
-//
-//  JDCarouselControl.h
-//  RoundSelection
-//
-//  Created by Jamil Dhanani on 8/1/2013.
-//  Copyright (c) 2013 Jamil Dhanani. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 typedef enum segmentType {
