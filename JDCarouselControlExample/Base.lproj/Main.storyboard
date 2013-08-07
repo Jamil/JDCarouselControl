@@ -58,12 +58,28 @@
                                     <action selector="removeAll:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CZq-zp-OhX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ0-qX-VGb">
+                                <rect key="frame" x="124" y="513" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Disable">
+                                    <color key="titleColor" red="0.16078431369999999" green="0.27058823529999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="disableButtonPress:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Im2-jn-N6m"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="carousel" destination="fxk-yB-Id6" id="bfN-M7-BJJ"/>
+                        <outlet property="disableButton" destination="gJ0-qX-VGb" id="vIh-KZ-c6m"/>
                         <outlet property="displayLabel" destination="sFF-E9-jSL" id="TVS-Mk-5Rd"/>
                         <outlet property="stepper" destination="q60-Wc-dw0" id="wXZ-Dr-2Yo"/>
                     </connections>

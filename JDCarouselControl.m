@@ -2,8 +2,9 @@
 
 #define INNER_PROPORTION 0.6
 #define VIEW_RADIUS_PLACEMENT_PROPORTION 0.8
-
 #define VIEW_SCALING_FACTOR 0.3
+
+#define DISABLED_ALPHA 0.5
 
 @interface JDCarouselControl ()
 
@@ -52,10 +53,6 @@ typedef struct margins {
     return self;
 }
 
--(id)init {
-    return [self initWithFrame:CGRectMake(300,300,300,300)];
-}
-
 -(void)_initialSetup {
     self.selectedSegmentIndex = 0;
     self.color = self.tintColor;            // default color set to tintColor
@@ -87,16 +84,17 @@ typedef struct margins {
 -(void)_drawSegments {
     CGPoint centerd = {self.frame.size.width/2, self.frame.size.height/2};
     
-    // We'll start from the conventional 0º and head ccw
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
     if (self.numberOfSegments < 1) {
         // don't draw any radial lines
         return;
     }
     
+    // We'll start from the conventional 0º and head ccw
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
     // Stroke Paths
     CGContextBeginPath(context);
+    CGContextSetStrokeColorWithColor(context, self.color.CGColor);
     for (int i = 0; i < self.numberOfSegments; i++) {
         CGContextMoveToPoint(context, centerd.x, centerd.y);
         CGContextMoveToPoint(context, centerd.x + cos(i*self.arcLength)*self.innerRadius, centerd.y + sin(i*self.arcLength)*self.innerRadius);
@@ -115,7 +113,7 @@ typedef struct margins {
     CGContextAddLineToPoint(context, centerd.x + cos((self.selectedSegmentIndex + 1)*self.arcLength)*self.innerRadius, centerd.y + sin((self.selectedSegmentIndex + 1)*self.arcLength)*self.innerRadius);
     CGContextAddArc(context, centerd.x, centerd.y, self.innerRadius, self.arcLength*(self.selectedSegmentIndex + 1), self.arcLength*self.selectedSegmentIndex, 1);
     
-    CGContextSetFillColorWithColor(context, self.color.CGColor);
+    CGContextSetFillColorWithColor(context, (self.enabled ? self.color.CGColor : [self.color colorWithAlphaComponent:DISABLED_ALPHA].CGColor));
     CGContextFillPath(context);
 }
 

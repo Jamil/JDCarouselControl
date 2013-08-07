@@ -56,4 +56,12 @@
 - (IBAction)carouselValueChanged:(id)sender {
     self.displayLabel.text = [self.titlesArray objectAtIndex:(self.carousel.selectedSegmentIndex % self.titlesArray.count)];
 }
+
+- (IBAction)disableButtonPress:(id)sender {
+    self.carousel.enabled = !self.carousel.enabled;
+    [self.disableButton setTitle:(self.carousel.enabled ? @"Disable" : @"Enable") forState:UIControlStateNormal];
+    [self.disableButton setTitle:(self.carousel.enabled ? @"Disable" : @"Enable") forState:UIControlStateHighlighted];
+    [self.disableButton setTitle:(self.carousel.enabled ? @"Disable" : @"Enable") forState:UIControlStateSelected];
+}
+
 @end
