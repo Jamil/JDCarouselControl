@@ -75,22 +75,6 @@
     <resources>
         <image name="Background" width="320" height="568"/>
     </resources>
-    <classes>
-        <class className="JDCarouselControl" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JDCarouselControl.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="carouselValueChanged:"/>
-                <relationship kind="action" name="removeAll:"/>
-                <relationship kind="action" name="stepperValueChanged:"/>
-                <relationship kind="outlet" name="carousel" candidateClass="JDCarouselControl"/>
-                <relationship kind="outlet" name="displayLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stepper" candidateClass="UIStepper"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
