@@ -30,6 +30,8 @@ typedef struct margins {
 @property (nonatomic, readwrite) NSInteger selectedSegmentIndex;
 @property (nonatomic, readwrite) NSInteger previousIndex;
 
+@property (nonatomic) NSMutableSet *indicesToFillImagesAt;
+
 @end
 
 @implementation JDCarouselControl
@@ -58,6 +60,7 @@ typedef struct margins {
     self.color = self.tintColor;            // default color set to tintColor
     self.textColor = [UIColor blackColor];  // default selected text color is black
     self.backgroundColor = [UIColor clearColor];
+    self.indicesToFillImagesAt = [[NSMutableSet alloc] initWithCapacity:2];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -198,6 +201,8 @@ typedef struct margins {
         
         [self sendActionsForControlEvents:UIControlEventTouchUpInside];
         if (tappedIndex != self.selectedSegmentIndex) {
+            [self.indicesToFillImagesAt addObject:[NSNumber numberWithInt:tappedIndex]];
+            [self.indicesToFillImagesAt addObject:[NSNumber numberWithInt:self.previousIndex]];
             self.selectedSegmentIndex = tappedIndex;
             [self _updateLabelColors];
             [self sendActionsForControlEvents:UIControlEventValueChanged];
@@ -293,15 +298,20 @@ typedef struct margins {
             }
         }
         else if ([[[self.items objectAtIndex:i] viewWithTag:1] isKindOfClass:[UIImageView class]]) {
-            UIImageView *imgView = (UIImageView*)[[self.items objectAtIndex:i] viewWithTag:1];
-            if (i == self.selectedSegmentIndex) {
-                imgView.image = [self _fillImage:imgView.image withColor:self.textColor];
-            }
-            else {
-                imgView.image = [self _fillImage:imgView.image withColor:self.color];
+            // Check to see if we need to reload this image, otherwise skip over it
+            if ([self.indicesToFillImagesAt member:[NSNumber numberWithInt:i]]) {
+                UIImageView *imgView = (UIImageView*)[[self.items objectAtIndex:i] viewWithTag:1];
+                if (i == self.selectedSegmentIndex) {
+                    imgView.image = [self _fillImage:imgView.image withColor:self.textColor];
+                }
+                else {
+                    imgView.image = [self _fillImage:imgView.image withColor:self.color];
+                }
             }
         }
     }
+    
+    [self.indicesToFillImagesAt removeAllObjects];
 }
 
 -(void)_insertSegment:(id)content atIndex:(NSUInteger)index {
@@ -331,6 +341,8 @@ typedef struct margins {
     
     if (index >= self.items.count) [self.items addObject:item];
     else [self.items insertObject:item atIndex:index];
+    
+    [self.indicesToFillImagesAt addObject:[NSNumber numberWithInt:index]];
     
     [self setNeedsLayout];
 }
