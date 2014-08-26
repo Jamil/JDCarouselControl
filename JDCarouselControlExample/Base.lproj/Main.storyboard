@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4457.9" systemVersion="13A497d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iHW-pJ-8cL"/>
+                        <viewControllerLayoutGuide type="bottom" id="5qz-sj-IUf"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="7N5-my-sCv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxk-yB-Id6" customClass="JDCarouselControl">
-                                <rect key="frame" x="0.0" y="185" width="320" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="q60-Wc-dw0">
+                                <rect key="frame" x="15" y="79" width="94" height="29"/>
+                                <color key="tintColor" red="0.65382849519999997" green="0.8661551502" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="sRJ-dc-H1V"/>
+                                </connections>
+                            </stepper>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95K-gc-x5h">
+                                <rect key="frame" x="198" y="72" width="107" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Remove All">
+                                    <color key="titleColor" red="0.65382849519999997" green="0.8661551502" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeAll:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CZq-zp-OhX"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxk-yB-Id6" customClass="JDCarouselControl">
+                                <rect key="frame" x="0.0" y="187" width="320" height="320"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="cloud" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFF-E9-jSL">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cloud" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFF-E9-jSL">
                                         <rect key="frame" x="92" y="119" width="136" height="81"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="81" id="rwq-O2-nkA"/>
+                                            <constraint firstAttribute="width" constant="136" id="v6J-N5-F3g"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                         <color key="textColor" red="0.16078431369999999" green="0.27058823529999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -30,44 +53,24 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.16078431369999999" green="0.27058823529999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="sFF-E9-jSL" secondAttribute="centerX" id="Ggy-ML-sSa"/>
+                                    <constraint firstAttribute="height" constant="320" id="a34-FT-xHC"/>
+                                    <constraint firstAttribute="centerY" secondItem="sFF-E9-jSL" secondAttribute="centerY" constant="0.5" id="glT-4n-Bqu"/>
+                                </constraints>
                                 <connections>
                                     <action selector="carouselValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="jWj-St-Y7N"/>
                                 </connections>
                             </view>
-                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="q60-Wc-dw0">
-                                <rect key="frame" x="15" y="140" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="tintColor" red="0.65382849519999997" green="0.8661551502" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.65382849519999997" green="0.8661551502" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="stepperValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="sRJ-dc-H1V"/>
-                                </connections>
-                            </stepper>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95K-gc-x5h">
-                                <rect key="frame" x="198" y="133" width="107" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Remove All">
-                                    <color key="titleColor" red="0.65382849519999997" green="0.8661551502" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="removeAll:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CZq-zp-OhX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ0-qX-VGb">
-                                <rect key="frame" x="124" y="513" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ0-qX-VGb">
+                                <rect key="frame" x="124" y="515" width="73" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="Vdh-4c-vpr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Disable">
                                     <color key="titleColor" red="0.16078431369999999" green="0.27058823529999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="disableButtonPress:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Im2-jn-N6m"/>
@@ -75,6 +78,20 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gJ0-qX-VGb" firstAttribute="top" secondItem="fxk-yB-Id6" secondAttribute="bottom" constant="8" id="29j-0q-s91"/>
+                            <constraint firstItem="95K-gc-x5h" firstAttribute="top" secondItem="iHW-pJ-8cL" secondAttribute="bottom" constant="52" id="DRy-0J-sa9"/>
+                            <constraint firstAttribute="centerX" secondItem="gJ0-qX-VGb" secondAttribute="centerX" constant="-0.5" id="IV4-oG-AVm"/>
+                            <constraint firstItem="95K-gc-x5h" firstAttribute="leading" secondItem="q60-Wc-dw0" secondAttribute="trailing" constant="89" id="Jl9-Oz-HuT"/>
+                            <constraint firstItem="q60-Wc-dw0" firstAttribute="top" secondItem="iHW-pJ-8cL" secondAttribute="bottom" constant="59" id="Nwd-2o-8hG"/>
+                            <constraint firstItem="q60-Wc-dw0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="Pqi-yi-ijd"/>
+                            <constraint firstItem="5qz-sj-IUf" firstAttribute="top" secondItem="gJ0-qX-VGb" secondAttribute="bottom" constant="72" id="U73-SQ-Cvv"/>
+                            <constraint firstItem="fxk-yB-Id6" firstAttribute="top" secondItem="q60-Wc-dw0" secondAttribute="bottom" constant="79" id="bqr-Y9-oPo"/>
+                            <constraint firstAttribute="trailing" secondItem="fxk-yB-Id6" secondAttribute="trailing" id="ciD-V9-Eos"/>
+                            <constraint firstItem="fxk-yB-Id6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="peU-tM-FOr"/>
+                            <constraint firstAttribute="trailing" secondItem="95K-gc-x5h" secondAttribute="trailing" constant="15" id="rxJ-1z-mYy"/>
+                            <constraint firstAttribute="centerX" secondItem="fxk-yB-Id6" secondAttribute="centerX" id="vrs-Zl-XEv"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
@@ -89,11 +106,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="320" height="568"/>
+        <image name="Background" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
 </document>
